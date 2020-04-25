@@ -2,14 +2,24 @@ const express = require('express');
 
 const app = express();
 
-app.use((req, res, next) => {
-  console.log('First middleware');
-  next();
-  console.log(req.url);
-});
+app.use('/api/posts', (req, res, next) => {
+  const posts = [
+    {
+      id: 'oiu7829',
+      title: "1st server side post",
+      content: "This is coming from the server"
+    },
+    {
+      id: 'jlksdjfls9',
+      title: "2nd server side post",
+      content: "This is coming from the server!"
+    },
 
-app.use((req, res, next) => {
-  res.send('Hello from express!');
+  ];
+  res.status(200).json({
+    message: 'Posts fetched succesfuly!',
+    posts:posts
+  });
 });
 
 module.exports = app;
