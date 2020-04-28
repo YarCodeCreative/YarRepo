@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 
 import { Post } from '../post.model';
 import { PostsService } from '../post.service';
-import { from } from 'rxjs';
 
 
 @Component({
