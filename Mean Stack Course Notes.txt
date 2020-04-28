@@ -1,0 +1,12 @@
+start angular server:   ng server
+
+start node server: npm run start:server
+  //
+    Using nodemon.
+    It requieres defining the script in the package.json file,
+    and adding
+      const debug = require("debug")("node-angular");
+    to the server.js file.
+    "node-angular" is a user-defined identifier
+  //
+
