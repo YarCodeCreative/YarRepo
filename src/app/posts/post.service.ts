@@ -8,6 +8,7 @@ export class PostsService {
   private posts: Post[] = [];
   private postsUpdated = new Subject<Post[]>();
 
+
   constructor(private http : HttpClient) {}
 
   getPosts() {
@@ -24,7 +25,12 @@ export class PostsService {
 
   addPost(title: string, content: string) {
     const post: Post = { id: null, title: title, content: content};
-    this.posts.push(post);
-    this.postsUpdated.next([...this.posts]);
+    this.http
+      .post<{message: string}>('http://localhost:3000/api/posts', post)
+      .subscribe((resposeData) => {
+        console.log(resposeData.message);
+        this.posts.push(post);
+        this.postsUpdated.next([...this.posts]);
+      });
   }
 }
