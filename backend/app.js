@@ -1,6 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+
+const Post = require('./models/post')
+
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', "*");
@@ -18,8 +24,13 @@ app.use((req, res, next) => {
 //&ejA8BhBO4$7I%
 
 app.post("/api/posts", (req, res, next) => {
-  const post = req.body;
+  const post = new Post({
+    title: req.body.title,
+    content: req.body.content,
+  });
   console.log(post);
+  // status code 201 means "everything is ok, a new resource was created"
+  // status code 200 just means "everything is ok.
   res.status(201).json({
     message: 'Post added successfully'
   });
@@ -40,7 +51,7 @@ app.use('/api/posts', (req, res, next) => {
 
   ];
   res.status(200).json({
-    message: 'Posts fetched succesfuly!',
+    message: 'Posts fetched succesfully!',
     posts:posts
   });
 });

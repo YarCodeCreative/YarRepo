@@ -1,0 +1,85 @@
+
+Installed Node.js and angular CLI
+
+INITIALIZING AN ANGULAR PROJECT:
+  -Open the project folder in Code and open a terminal
+  -Use th CLI to initialize an Angular project:
+    ng new my-new-angular-app
+  -When prompted, click enter, enter for the default values of the questions
+
+USING THE ANGULAR SERVER:
+  -The Angular server is built into the Angular framework
+  -To start angular server, use the CLI:
+    ng serve
+  -To shut down server, use the CLI:
+    Ctl + c
+
+WORKING WITH GIT/GITHUB
+  -Installed git globaly
+  -Created an account on GitHub
+  -Create a repository on GitHub, and copy URL
+  -Go to Code: Make sure git is enabled from settings
+  -Go to source control section, and commit changes
+  -Add remote repo
+    Go to command palette search for "add remote' OR
+    use the CLI:
+      git remote add <name> <url>
+      NOTE: if a README file was created by github in the repository,
+        then command will fail. Will have to merge files
+  -Push changes
+
+USING THE NODE.JS SERVER:
+    -Use Nodemon to restart server automatically after making changes
+    -Nodemon requires defining the script in the package.json file.
+      Example:
+      "start:server": "nodemon server.js"
+    -Also requires adding the following to the server.js file:
+      const debug = require("debug")("node-angular");
+      "node-angular" is a user-defined identifier
+    -To start node server, use the CLI:
+      npm run start:server
+
+WORKING WITH MONGODB & MONGOOSE:
+  -Within your account on mongodb.com:
+    -Create a new project, then a new cluster
+    -Create a new user with a new password
+    -Add local IP to IP Whitelist under Network Security
+  - Install mongoose package using npm
+    -Mongoose is a 3rd party package that allows for schemas for storing data.
+    -Install using the CLI:
+        npm install --save mongoose
+  - Mongoose will create ID's on its own
+
+CREATE A MONGOOSE SCHEMA
+  -Create 'models' folder in the 'backend' folder
+  -Create a .js file for the schema you want to build.
+    ex. my-schema.js
+  -in my-schema.js, you must:
+    require mongoose
+    define the schemas
+    export the model.
+    ex:
+      // Require mongoose:
+      const mongoose = require('mongoose');
+
+      // Define schema:
+      const postSchema = mongoose.Schema({
+        title: { type: String, required: true },
+        content: { type: String, required: true }
+      });
+
+      // Export schema for use outside of this file
+      module.exports = mongoose.model('Post', postSchema);
+      //First argument is a user-defined name,
+      //and the second argument is the schema you want to use
+
+USING A SCHEMA IN THE APP
+  -In the app.js file in the backend folder, require your schema
+    ex.: const Post = require('./models/post')
+  -
+
+USING BODY-PARSER
+  -body-parser is a node.js middleware that parses incoming requests before
+    the handlers
+  -body parser is installed throught the CLI:
+    npm install --save body-parser
